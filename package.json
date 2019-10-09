@@ -3,12 +3,12 @@
   "version": "3.0.0",
   "scripts": {
     "build:prod": "ng build --prod",
-    "build:pub": "ng build --prod --output-path docs --base-href https://trainingit-introangular-ed3.github.io/training-projects/",
+    "build:pub": "ng build --prod --output-path docs --base-href https://introangular4.github.io/practica4-carlossc87/",
     "e2e": "ng e2e",
     "lint": "ng lint",
     "ng": "ng",
     "pub": "npm run build:pub && npm run push",
-    "push": "git add * && git commit -m 'pub' && git push",
+    "push": "git add --all && git commit -m 'pub' && git push",
     "start:prod": "npm run build:prod && npm run http-server",
     "start": "ng serve -o --port 4279",
     "test": "ng test"
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.6",
-    "@angular/cli": "~8.3.6",
+    "@angular/cli": "^8.3.8",
     "@angular/compiler-cli": "~9.0.0-next.8",
     "@angular/language-service": "~9.0.0-next.8",
     "@types/jasmine": "~2.8.8",
