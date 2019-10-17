@@ -1,0 +1,46 @@
+<h2>{{ header }}</h2>
+<p>{{ description | uppercase }}</p>
+
+<fieldset>
+  <legend>Filters</legend>
+  <section>
+    <label for="byname">By Name</label>
+    <input name="byname"
+           type="text"
+           [(ngModel)]="byname" />
+  </section>
+</fieldset>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="projects.length >0; else empty">
+    <ng-container *ngFor="let project of projects">
+      <tr *ngIf="project.name.toLowerCase().indexOf(byname.toLowerCase()) != -1">
+        <td>{{project.id}}</td>
+        <td><a routerLink="{{ project.id }}">{{ project.name }}</a></td>
+        <td>
+          <input value="Delete"
+                 type="button"
+                 (click)="deleteProject(project)" />
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+  <ng-template #empty>
+    <tbody>
+      <tr>
+        <td colspan="3">No projects</td>
+      </tr>
+    </tbody>
+  </ng-template>
+</table>
+
+<a routerLink="new"
+   class="button">New Project
+</a>

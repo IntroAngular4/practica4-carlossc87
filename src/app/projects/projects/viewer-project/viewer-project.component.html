@@ -1,0 +1,12 @@
+<h2>{{ header }}</h2>
+<p>{{ description | uppercase }}</p>
+
+
+<div *ngIf="project !== null; else notfound">
+  <p><b>Id:</b> {{project.id}}</p>
+  <p><b>Name:</b> {{project.name}}</p>
+</div>
+
+<ng-template #notfound>
+  <p>Project with id '{{projectId}}' not found.</p>
+</ng-template>
