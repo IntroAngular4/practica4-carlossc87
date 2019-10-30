@@ -29,19 +29,14 @@ export class ProjectsService {
   }
 
   public create(project: Project) {
-    const ids = environment.projects.map(a => a.id);
+    const ids = this.projects.map(a => a.id);
     if (ids.length > 0) {
       project.id = Math.max.apply(null, ids) + 1;
     }
-    //environment.projects.push(project);
     this.projects.push(project);
   }
 
   public delete(project: Project) {
-    //let nprojects = environment.projects;
-    let nprojects = this.projects;
-    nprojects = nprojects.filter(p => p.id !== project.id);
-    //environment.projects = projects;
-    this.projects = nprojects;
+    this.projects = this.projects.filter(p => p.id !== project.id);
   }
 }
