@@ -1,0 +1,16 @@
+<app-filter-projects-form (filter)="onFilterChange($event)"></app-filter-projects-form>
+
+<div *ngIf="filterProjects.length >0; else empty">
+  <ul>
+    <ng-container *ngFor="let project of filterProjects">
+      <li>
+        <a routerLink="{{ project.id }}">
+          {{project.id}} - {{ project.name }}
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+<ng-template #empty>
+  <div>No projects</div>
+</ng-template>

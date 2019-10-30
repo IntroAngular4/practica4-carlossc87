@@ -1,22 +1,3 @@
-<h2>{{ header }}</h2>
-<p>{{ description | uppercase }}</p>
+<h2>New Project</h2>
 
-<fieldset>
-  <legend>Project Form</legend>
-  <section>
-    <label for="name">Name</label>
-    <input name="name"
-           type="text"
-           [(ngModel)]="projectName"
-           placeholder="Project
-     name"
-           required />
-    <span *ngIf="projectNameErrorRequire">
-      Name is required.
-    </span>
-  </section>
-</fieldset>
-
-<input value="Save"
-       type="submit"
-       (click)="saveProject()" />
+<app-new-project-form (save)="save($event)"></app-new-project-form>

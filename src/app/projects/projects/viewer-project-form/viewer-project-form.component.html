@@ -1,0 +1,10 @@
+<div *ngIf="project !== null; else notfound">
+  <p><b>Id:</b> {{project.id}}</p>
+  <p><b>Name:</b> {{project.name}}</p>
+  <input value="Delete"
+         type="button"
+         (click)="onDelete(project)" />
+</div>
+<ng-template #notfound>
+  <p>Project not found.</p>
+</ng-template>

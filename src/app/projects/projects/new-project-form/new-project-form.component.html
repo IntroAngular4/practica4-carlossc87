@@ -1,0 +1,18 @@
+<fieldset>
+  <legend>Project Form</legend>
+  <section>
+    <label for="name">Name</label>
+    <input name="name"
+           type="text"
+           [(ngModel)]="projectName"
+           placeholder="Project name"
+           required />
+    <span *ngIf="projectNameErrorRequire">
+      Name is required.
+    </span>
+  </section>
+</fieldset>
+
+<input value="Save"
+       type="submit"
+       (click)="saveProject()" />
