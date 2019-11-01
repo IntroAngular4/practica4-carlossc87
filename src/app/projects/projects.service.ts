@@ -1,42 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 import { Project } from './projects/models/project.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
-  public projects: Project[];
+  public projects: Project[] = [];
 
-  constructor() {
-    this.projects = environment.projects;
-  }
+  private url = 'https://api-base.herokuapp.com/api/pub/projects';
+
+  constructor(private httpClient: HttpClient) {}
 
   public getAll() {
-    return this.projects;
+    return this.httpClient.get<Project[]>(this.url);
+  }
+
+  public getCount() {
+    return this.httpClient.get<any>(this.url + '/count').pipe(map(data => data.count));
   }
 
   public getById(id: number) {
-    const projectsFound = this.projects.filter(p => p.id === id);
-    if (projectsFound.length === 1) {
-      return projectsFound[0];
-    }
-    return null;
-  }
-
-  public countAll() {
-    return this.projects.length;
+    return this.httpClient.get<Project>(this.url + '/' + id);
   }
 
   public create(project: Project) {
-    const ids = this.projects.map(a => a.id);
-    if (ids.length > 0) {
-      project.id = Math.max.apply(null, ids) + 1;
-    }
-    this.projects.push(project);
+    return this.httpClient.post(this.url, project);
   }
 
   public delete(project: Project) {
-    this.projects = this.projects.filter(p => p.id !== project.id);
+    return this.httpClient.delete(this.url + '/' + project._id);
   }
 }

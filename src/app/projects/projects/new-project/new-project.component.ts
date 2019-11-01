@@ -14,7 +14,6 @@ export class NewProjectComponent implements OnInit {
   ngOnInit() {}
 
   public save(project: Project) {
-    this.projectsService.create(project);
-    this.router.navigate(['projects']);
+    this.projectsService.create(project).subscribe(res => this.router.navigate(['projects']));
   }
 }

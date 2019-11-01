@@ -4,8 +4,8 @@
   <ul>
     <ng-container *ngFor="let project of filterProjects">
       <li>
-        <a routerLink="{{ project.id }}">
-          {{project.id}} - {{ project.name }}
+        <a routerLink="{{ project._id }}">
+          {{project._id}} - {{ project.name }}
         </a>
       </li>
     </ng-container>

@@ -1,1 +1,6 @@
-<app-dashboard [numProjects]="numProjects"></app-dashboard>
+<ng-container *ngIf="numProjects$ | async as numProjects; else loading">
+  <app-dashboard [numProjects]="numProjects"></app-dashboard>
+</ng-container>
+<ng-template #loading>
+  <div>Loading...</div>
+</ng-template>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ProjectsService } from '../../projects.service';
 import { Project } from '../models/project.model';
 
@@ -9,17 +10,18 @@ import { Project } from '../models/project.model';
   styleUrls: ['./viewer-project.component.css']
 })
 export class ViewerProjectComponent implements OnInit {
-  public project: Project = null;
+  public project$: Observable<Project>;
+  private projectId: number;
 
   constructor(activateRoute: ActivatedRoute, private router: Router, private projectsService: ProjectsService) {
-    const projectId = parseInt(activateRoute.snapshot.params['id'], 10);
-    this.project = this.projectsService.getById(projectId);
+    this.projectId = parseInt(activateRoute.snapshot.params['id'], 10);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.project$ = this.projectsService.getById(this.projectId);
+  }
 
   public onDelete(project: Project) {
-    this.projectsService.delete(project);
-    this.router.navigate(['projects']);
+    this.projectsService.delete(project).subscribe(res => this.router.navigate(['projects']));
   }
 }

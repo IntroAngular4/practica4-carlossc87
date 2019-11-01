@@ -4,4 +4,9 @@
    class="button">New Project
 </a>
 
-<app-projects-list [projects]="projects"></app-projects-list>
+<ng-container *ngIf="projects$ | async as projects; else loading">
+  <app-projects-list [projects]="projects"></app-projects-list>
+</ng-container>
+<ng-template #loading>
+  <div>Loading...</div>
+</ng-template>

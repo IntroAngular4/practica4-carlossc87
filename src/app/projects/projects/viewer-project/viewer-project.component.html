@@ -1,4 +1,10 @@
 <h1>Project</h1>
 
-<app-viewer-project-form [project]="project"
-                         (delete)="onDelete($event)"></app-viewer-project-form>
+
+<ng-container *ngIf="project$ | async as project; else loading">
+  <app-viewer-project-form [project]="project"
+                           (delete)="onDelete($event)"></app-viewer-project-form>
+</ng-container>
+<ng-template #loading>
+  <div>Loading...</div>
+</ng-template>

@@ -13,21 +13,10 @@ export class ProjectsListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    const p = [];
-    this.projects.forEach(function(project) {
-      p.push(project);
-    });
-    this.filterProjects = p;
+    this.filterProjects = this.projects;
   }
 
   public onFilterChange(valor: string) {
-    const p = [];
-    const filterByName = valor.toLowerCase();
-    this.projects.forEach(function(project) {
-      if (project.name.toLowerCase().indexOf(filterByName) !== -1) {
-        p.push(project);
-      }
-    });
-    this.filterProjects = p;
+    this.filterProjects = this.projects.filter(p => p.name.toLowerCase().indexOf(valor.toLowerCase()) !== -1);
   }
 }

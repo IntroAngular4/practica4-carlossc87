@@ -22,7 +22,8 @@ export class NewProjectFormComponent implements OnInit {
       return;
     }
     const project: Project = {
-      id: 0,
+      _id: null,
+      owner: null,
       name: this.projectName
     };
     this.save.emit(project);
