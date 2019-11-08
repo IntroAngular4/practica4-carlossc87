@@ -1,15 +1,18 @@
 <app-filter-projects-form (filter)="onFilterChange($event)"></app-filter-projects-form>
 
 <div *ngIf="filterProjects.length >0; else empty">
-  <ul>
-    <ng-container *ngFor="let project of filterProjects">
-      <li>
-        <a routerLink="{{ project._id }}">
-          {{project._id}} - {{ project.name }}
-        </a>
-      </li>
-    </ng-container>
-  </ul>
+  <p>
+    <mat-list role="list">
+      <ng-container *ngFor="let project of filterProjects">
+        <mat-list-item role="listitem">
+
+          <a routerLink="{{ project._id }}">
+            <mat-icon>folder</mat-icon> {{project._id}} - {{ project.name }}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </p>
 </div>
 <ng-template #empty>
   <div>No projects</div>

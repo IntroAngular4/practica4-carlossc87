@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Project } from '../models/project.model';
 
 @Component({
@@ -8,24 +9,29 @@ import { Project } from '../models/project.model';
 })
 export class NewProjectFormComponent implements OnInit {
   @Output() public save = new EventEmitter<Project>();
-  public projectName;
-  public projectNameErrorRequire = false;
+  public newProjectGroup: FormGroup;
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.newProjectGroup = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      author: ['', Validators.required],
+      started: new Date().toISOString()
+    });
+  }
+
+  public getError(controlName: string): ValidationErrors {
+    let error: ValidationErrors = {};
+    const control = this.newProjectGroup.get(controlName);
+    if (control.touched && control.errors != null) {
+      error = control.errors;
+    }
+    return error;
+  }
 
   public saveProject() {
-    if (!this.projectName || this.projectName.trim().length <= 0) {
-      this.projectName = null;
-      this.projectNameErrorRequire = true;
-      return;
-    }
-    const project: Project = {
-      _id: null,
-      owner: null,
-      name: this.projectName
-    };
+    const project: Project = this.newProjectGroup.value;
     this.save.emit(project);
   }
 }

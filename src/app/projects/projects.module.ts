@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule } from '@angular/material';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { FilterProjectsFormComponent } from './projects/filter-projects-form/filter-projects-form.component';
 import { NewProjectFormComponent } from './projects/new-project-form/new-project-form.component';
@@ -20,6 +21,16 @@ import { ViewerProjectComponent } from './projects/viewer-project/viewer-project
     ViewerProjectFormComponent,
     NewProjectFormComponent
   ],
-  imports: [CommonModule, ProjectsRoutingModule, FormsModule]
+  imports: [
+    CommonModule,
+    ProjectsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatListModule
+  ]
 })
 export class ProjectsModule {}

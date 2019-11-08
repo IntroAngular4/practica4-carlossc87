@@ -1,6 +1,9 @@
-<div>
-  <label for="byname">Filter by Name:</label>
-  <input name="byname"
-         type="text"
-         (input)="onChangeByName($event)" />
-</div>
+<p>
+  <mat-form-field>
+    <mat-label>Filter by Name</mat-label>
+    <input matInput
+           name="byname"
+           type="text"
+           (input)="onChangeByName($event)" />
+  </mat-form-field>
+</p>

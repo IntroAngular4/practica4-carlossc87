@@ -1,18 +1,33 @@
-<fieldset>
-  <legend>Project Form</legend>
-  <section>
-    <label for="name">Name</label>
-    <input name="name"
-           type="text"
-           [(ngModel)]="projectName"
-           placeholder="Project name"
-           required />
-    <span *ngIf="projectNameErrorRequire">
-      Name is required.
-    </span>
-  </section>
-</fieldset>
-
-<input value="Save"
-       type="submit"
-       (click)="saveProject()" />
+<form [formGroup]="newProjectGroup">
+  <p>
+    <mat-form-field class="input-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput
+             name="name"
+             type="text"
+             formControlName="name" />
+      <mat-error *ngIf="getError('name').required">Name is required.</mat-error>
+      <mat-error *ngIf="getError('name').minlength as error">Name must have at least {{error.requiredLength}} chars
+        (have
+        {{error.actualLength}} chars)</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Author</mat-label>
+      <input matInput
+             name="author"
+             type="text"
+             formControlName="author" />
+      <mat-error *ngIf="getError('author').required">Author is required.</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <button mat-raised-button
+            color="primary"
+            (click)="saveProject()"
+            [disabled]="newProjectGroup.invalid">
+      <mat-icon>save</mat-icon> Save
+    </button>
+  </p>
+</form>

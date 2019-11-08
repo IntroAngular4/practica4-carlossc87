@@ -1,12 +1,19 @@
 <h1>Projects</h1>
 
-<a routerLink="new"
-   class="button">New Project
-</a>
 
 <ng-container *ngIf="projects$ | async as projects; else loading">
   <app-projects-list [projects]="projects"></app-projects-list>
 </ng-container>
 <ng-template #loading>
-  <div>Loading...</div>
+  <p>No projects</p>
 </ng-template>
+
+<p>
+  <a mat-raised-button
+     color="primary"
+     routerLink="new"
+     class="button">
+    <mat-icon>add</mat-icon>
+    New Project
+  </a>
+</p>

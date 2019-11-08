@@ -18,6 +18,7 @@ export class ProjectsService {
   }
 
   public getCount() {
+    console.log('Peticion COUNT!!!');
     return this.httpClient.get<any>(this.url + '/count').pipe(map(data => data.count));
   }
 
